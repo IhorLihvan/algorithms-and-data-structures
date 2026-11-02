@@ -1,2 +1,17 @@
-*.exe
+# Скомпільовані документи та бінарники
 *.pdf
+*.exe
+
+# Кеш пакетів Typst та LSP-сервера (Tinymist)
+.typst/
+.tinymist/
+
+# Налаштування редакторів
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/
+
+# Системні файли ОС
+Thumbs.db
+.DS_Store
