@@ -52,3 +52,4 @@
 
 // --- ПІДКЛЮЧЕННЯ РОЗДІЛІВ ---
 #include "chapter1.typ"
+#include "chapter4.typ"
