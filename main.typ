@@ -51,5 +51,5 @@
 #pagebreak()
 
 // --- ПІДКЛЮЧЕННЯ РОЗДІЛІВ ---
-#include "chapter1.typ"
 #include "table_chapter.typ"
+#include "hash_table_chapter.typ"
