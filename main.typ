@@ -88,6 +88,8 @@
 // --- ПІДКЛЮЧЕННЯ РОЗДІЛІВ ---
 #include "table_chapter.typ"
 #include "hash_table_chapter.typ"
+#include "chapter4_avl.typ"
+#include "chapter4_dijkstra.typ"
 
 // --- СПИСОК ЛІТЕРАТУРИ (спільний для всіх розділів) ---
 #pagebreak()
