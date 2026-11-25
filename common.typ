@@ -37,6 +37,56 @@
   }
 }
 
+// --- Код із файлів ---
+
+// Лістинг із файлу в папці code/. Код у книзі завжди той самий, що
+// компілюється і проходить тести. part --- фрагмент між рядком
+// "// == part ==" і наступним таким рядком; без part --- увесь файл.
+// Рядки-позначки "// == ... ==" у книзі не виводяться.
+#let code-file(path, part: none, lang: "cpp") = {
+  let is-marker(line) = {
+    let t = line.trim()
+    t.starts-with("// == ") and t.ends-with(" ==")
+  }
+  let lines = read(path).replace("\r\n", "\n").split("\n")
+  let inside = part == none
+  let found = part == none
+  let out = ()
+  for line in lines {
+    if is-marker(line) {
+      if part != none {
+        inside = line.trim() == "// == " + part + " =="
+        found = found or inside
+      }
+      continue
+    }
+    if inside {
+      out.push(line)
+    }
+  }
+  assert(found, message: "немає фрагмента " + repr(part) + " у " + path)
+  while out.len() > 0 and out.first().trim() == "" {
+    out.remove(0)
+  }
+  while out.len() > 0 and out.last().trim() == "" {
+    out.pop()
+  }
+  block(breakable: true, width: 100%, above: 0.9em, below: 0.9em, {
+    text(size: 7.5pt, fill: luma(110), raw(path.trim("code/", at: start)))
+    v(-0.6em)
+    raw(out.join("\n"), lang: lang, block: true)
+  })
+}
+
+// Результат роботи програми з текстового файлу
+#let program-output(path) = block(
+  width: 100%,
+  fill: luma(245),
+  inset: 8pt,
+  radius: 3pt,
+  align(left, raw(read(path).replace("\r\n", "\n").trim(), block: true)),
+)
+
 // --- Теореми ---
 
 // Теорема з наскрізним номером. Посилання: @thm-... дає «Теорема 3».
